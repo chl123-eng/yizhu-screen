@@ -2,12 +2,23 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-// import "lib-flexible";
-import "@/utils/rem";
-// import ElementUI from 'element-ui';
-// import 'element-ui/lib/theme-chalk/index.css';
+// import "@/utils/rem";
+import "./assets/icons/index.js";
+import SvgIcon from "@/components/SvgIcon.vue";
+// 将自动注册所有组件为全局组件
+import dataV from "@jiaminghi/data-view";
+import scroll from "vue-seamless-scroll";
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
+/* http请求 */
+import api from "@/http";
 
-// Vue.use(ElementUI);
+Vue.use(api);
+Vue.use(ElementUI);
+Vue.use(dataV);
+Vue.use(scroll);
+Vue.use(scroll, { componentName: "scroll-seamless" });
+Vue.component("SvgIcon", SvgIcon);
 
 Vue.config.productionTip = false;
 

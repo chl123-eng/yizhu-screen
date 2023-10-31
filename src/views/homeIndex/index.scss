@@ -1,0 +1,294 @@
+  .bg {
+    background-position: top center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+  .outContainer{
+    width: 100vw;
+    height: 100vh;
+  }
+  .container {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-image: url("@/assets/img/screen-bg.png");
+  
+    .dateTime {
+      position: absolute;
+      left: 50%;
+      top: 111px;
+      transform: translate(-50%, -50%);
+      font-size: 25px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 29px;
+    }
+    .content {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 150px 67px 43px;
+      position: absolute;
+      z-index: 1;
+      .top {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 25px;
+        .dataBox {
+          width: 452px;
+          height: 335px;
+          background-image: url("@/assets/img/screentop-bg.png");
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          padding: 58px 12px;
+          box-sizing: border-box;
+          .circleArray {
+            width: 104px;
+            height: 100px;
+            background-image: url("@/assets/img/screenData-bg.png");
+            text-align: center;
+            padding-top: 35px;
+            padding-bottom: 35px;
+            box-sizing: border-box;
+            .value {
+              font-size: 18px;
+              color: #00ffff;
+              line-height: 21px;
+              text-shadow: 0px 0px 4px #190be4;
+              margin-bottom: 4px;
+            }
+            .name {
+              font-size: 10px;
+              font-weight: bold;
+              color: #a8d4e4;
+              line-height: 12px;
+            }
+          }
+        }
+        &-center {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .totalAmountBox {
+            width: 811px;
+            height: 164px;
+            background-image: url("@/assets/img/screenCenter-bg.png");
+            margin-top: 26px;
+            margin-bottom: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &-items {
+              width: 95%;
+              display: flex;
+              align-items: center;
+              justify-content: space-around;
+              margin-top: 10px;
+              &-item {
+                width: 50px;
+                height: 105px;
+                position: relative;
+                &-inner {
+                  width: 50px;
+                  height: 50px;
+                  margin-bottom: 5px;
+                  background: #08266F;
+                }
+                &-value {
+                  position: absolute;
+                  font-size: 50px;
+                  color: #fff;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                }
+              }
+              // &-item:nth-child(3)::after,
+              // &-item:nth-child(6)::after,
+              // &-item:nth-child(9)::after {
+              //   content: ",";
+              //   position: absolute;
+              //   bottom: -10px;
+              //   left: -20px;
+              //   color: #fff;
+              //   font-size: 50px;
+              // }
+            }
+          }
+          .info {
+            font-size: 50px;
+            color: #00FFFF;
+            text-shadow: 0px 0px 27px #02EBEF;
+            font-size: 40px
+          }
+        }
+  
+        .supplierChart::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          width: 452px;
+          height: 335px;
+          background: url("@/assets/img/screentop-bg.png");
+          transform: rotateY(180deg);
+          z-index: -1;
+          background-position: top center;
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+        }
+        .supplierChart {
+          width: 452px;
+          height: 335px;
+          position: relative;
+          z-index: 1;
+          &-top {
+            display: flex;
+            align-items: center;
+            margin-top: 30px;
+            margin-left: 20px;
+            .svg {
+              margin-right: 5px;
+            }
+            .title {
+              font-size: 20px;
+              color: #ffffff;
+            }
+          }
+  
+          .chartBox {
+            position: relative;
+            .tip {
+              position: absolute;
+              right: 15px;
+              .top,
+              .bottom {
+                font-size: 12px;
+                color: #ffffff;
+                line-height: 14px;
+              }
+              .top {
+                margin-bottom: 5px;
+              }
+              .bottom {
+                display: flex;
+                justify-content: flex-end;
+              }
+              .top::before {
+                content: "";
+                position: absolute;
+                left: -20px;
+                width: 15px;
+                height: 15px;
+                background: #00ffff;
+              }
+            }
+            .chart {
+              width: 100%;
+              height: 300px;
+            }
+          }
+        }
+      }
+      .bottom {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .projectSituation {
+          width: 584px;
+          height: 528px;
+          background-image: url("@/assets/img/screenBotom-bg.png");
+          box-sizing: border-box;
+          &-top {
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            margin-left: 20px;
+            &-left {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+  
+              .svg {
+                margin-right: 5px;
+              }
+              .title {
+                font-size: 20px;
+                color: #ffffff;
+              }
+            }
+            &-right {
+              .svg {
+                margin-right: 10px;
+              }
+              .tip {
+                font-size: 16px;
+                color: #ffffff;
+              }
+            }
+          }
+        }
+        .latestTransStatus {
+          width: 584px;
+          height: 528px;
+          position: relative;
+          z-index: 1;
+          display: flex;
+          flex-direction: column;
+          // justify-content: center;
+          align-items: center;
+          box-sizing: border-box;
+          &-top {
+            width: 86%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            &-left {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              .svg {
+                margin-right: 5px;
+              }
+              .title {
+                font-size: 20px;
+                color: #ffffff;
+              }
+            }
+            &-right {
+                width: 40%;
+                height: 25px;
+                line-height: 25px;
+                overflow: hidden;
+              .svg {
+                margin-right: 10px;
+              }
+              .tip {
+                font-size: 16px;
+                color: #ffffff;
+              }
+            }
+          }
+        }
+        .latestTransStatus::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          width: 584px;
+          height: 528px;
+          background: url("@/assets/img/screenBotom-bg.png");
+          transform: rotateY(180deg);
+          z-index: -1;
+          background-position: top center;
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+        }
+      }
+    }
+  }
