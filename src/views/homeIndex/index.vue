@@ -16,14 +16,20 @@
               <div class="totalAmountBox bg">
                 <div class="totalAmountBox-items">
                   <div
-                    class="totalAmountBox-items-item"
-                    v-for="(item, index) in dealMoneyCount"
-                    :key="index"
+                  class="totalAmountBox-items-item"
+                    v-for="(item, itemIndex) in dealMoneyCount"
+                    :key="itemIndex"
                   >
-                    <div class="totalAmountBox-items-item-inner"></div>
-                    <div class="totalAmountBox-items-item-inner"></div>
-                    <div class="totalAmountBox-items-item-value">
-                      {{ item }}
+                    <div
+                    class="totalAmountBox-items-item-i"
+                      v-for="(i, index) in item"
+                      :key="index"
+                    >
+                      <div class="totalAmountBox-items-item-i-inner"></div>
+                      <div class="totalAmountBox-items-item-i-inner"></div>
+                      <div class="totalAmountBox-items-item-i-value">
+                        {{ i }}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -41,9 +47,9 @@
               </div>
 
               <div class="chartBox">
-                <div class="tip">
-                  <div class="top">申请入驻量</div>
-                  <div class="bottom">单位/个</div>
+                <div class="chartBoxTip">
+                  <div class="chartBoxTop">申请入驻量</div>
+                  <div class="chartBoxBottom">单位/个</div>
                 </div>
                 <div class="chart">
                   <supplierChart />
@@ -125,7 +131,8 @@ import scrollBoard from "./indexs/scrollBoard.vue";
 import projectSituation from "./indexs/projectSituation.vue";
 import { getScreenAddData } from "@/http/api/index";
 import vueSeamlessScroll from "vue-seamless-scroll";
-import ChinaMap from "./indexs/ChinaMap.vue"
+import ChinaMap from "./indexs/ChinaMap.vue";
+import { dealMoneyCountfun } from "./utils";
 export default {
   components: {
     supplierChart,
@@ -156,7 +163,7 @@ export default {
           hoverStop: true, // 是否开启鼠标悬停stop
           direction: 1, // 0向下 1向上 2向左 3向右
           openWatch: true, // 开启数据实时监控刷新dom
-          singleHeight: 25, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
+          singleHeight: 26, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
           singleWidth: 0, // 单步运动停止的宽度(默认值0是无缝不停止的滚动) direction => 2/3
           waitTime: 1200, // 单步运动停止的时间(默认值1000ms)
         };
@@ -196,15 +203,17 @@ export default {
 
       }
     },
+    
     //获取顶部数据
     async getScreenAddData(){
       this.dealMoneyCount = [];
       this.projectSituation = [];
       const res = await getScreenAddData({});
         if(res.status == 200){
-          // let dealMoneyCountTemp = res.data.deal_money_count.toString().replace(".","").split("");
-          let dealMoneyCountTemp = res.data.deal_money_count.toString().split("");
-          this.dealMoneyCount = dealMoneyCountTemp;
+
+          let dealMoneyCountTemp = parseInt(res.data.deal_money_count).toString();
+          
+          this.dealMoneyCount = dealMoneyCountfun(dealMoneyCountTemp);
 
           let projectSituationTemp = res.data.project_situation;
           for(let key of Object.keys(projectSituationTemp)){
@@ -223,9 +232,9 @@ export default {
   mounted() {
     this.showNowTime();
     this.getScreenAddData();
-    this.timer2 = setInterval(async () => {
-      this.getScreenAddData();
-    },30000)
+    // this.timer2 = setInterval(async () => {
+    //   this.getScreenAddData();
+    // },30000)
   },
   beforeDestroy(){
     clearInterval(this.timer1);

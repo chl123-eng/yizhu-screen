@@ -1,13 +1,9 @@
 // vue.config.js
 const path = require("path");
-const CompressionWebpackPlugin = require("compression-webpack-plugin"); // 开启gzip压缩， 按需引用
-const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i; // 开启gzip压缩， 按需写入
 const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin; // 打包分析
 const IS_PROD = ["production", "prod"].includes(process.env.NODE_ENV);
 const resolve = (dir) => path.join(__dirname, dir);
-//用于生产环境去除多余的css
-const PurgecssPlugin = require("purgecss-webpack-plugin");
 //全局文件路径
 const glob = require("glob-all");
 
@@ -15,7 +11,7 @@ const glob = require("glob-all");
 const targetPath = 'http://dev.dcyijian.com';
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/site/vue-demo/" : "/", // 公共路径
+  // publicPath: process.env.NODE_ENV === "production" ? "/site/vue-demo/" : "/", // 公共路径
   indexPath: "index.html", // 相对于打包路径index.html的路径
   outputDir: process.env.outputDir || "dist", // 'dist', 生产环境构建文件的目录
   assetsDir: "static", // 相对于outputDir的静态资源(js、css、img、fonts)目录
@@ -69,47 +65,6 @@ module.exports = {
       ]);
     }
   },
-  configureWebpack: (config) => {
-    // 开启 gzip 压缩
-    // 需要 npm i -D compression-webpack-plugin
-    const plugins = [];
-    if (IS_PROD) {
-      plugins.push(
-        new CompressionWebpackPlugin({
-          filename: "[path].gz[query]",
-          algorithm: "gzip",
-          test: productionGzipExtensions,
-          threshold: 10240,
-          minRatio: 0.8,
-        })
-      );
-      //启用代码压缩
-      //去掉不用的css 多余的css
-      plugins.push(
-        new PurgecssPlugin({
-          paths: glob.sync([path.join(__dirname, "./**/*.vue")]),
-          extractors: [
-            {
-              extractor: class Extractor {
-                static extract(content) {
-                  const validSection = content.replace(
-                    /<style([\s\S]*?)<\/style>+/gim,
-                    ""
-                  );
-                  return validSection.match(/[A-Za-z0-9-_:/]+/g) || [];
-                }
-              },
-              extensions: ["html", "vue"],
-            },
-          ],
-          whitelist: ["html", "body"],
-          whitelistPatterns: [/el-.*/],
-          whitelistPatternsChildren: [/^token/, /^pre/, /^code/],
-        })
-      );
-    }
-    config.plugins = [...config.plugins, ...plugins];
-  },
   css: {
     extract: IS_PROD,
     loaderOptions: {
@@ -121,8 +76,9 @@ module.exports = {
     },
   },
   devServer: {
-    host: "localhost",
+    host: "0.0.0.0",
     port: 8080, // 端口号
+    // public: "192.168.2.12:8080",
     https: false, // https:{type:Boolean}
     // open: false, //配置自动启动浏览器
     // hotOnly: true, // 热更新

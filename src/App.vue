@@ -6,5 +6,8 @@
 
 <style lang="scss">
 #app {
+  body{
+    margin: 0
+  }
 }
 </style>
