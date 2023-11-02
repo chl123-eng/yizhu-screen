@@ -8,7 +8,8 @@ const resolve = (dir) => path.join(__dirname, dir);
 const glob = require("glob-all");
 
 //环境
-const targetPath = 'http://dev.dcyijian.com';
+// const targetPath = 'http://dev.dcyijian.com';//测试环境
+const targetPath = 'https://new.dcyijian.com';//正式环境
 
 module.exports = {
   // publicPath: process.env.NODE_ENV === "production" ? "/site/vue-demo/" : "/", // 公共路径

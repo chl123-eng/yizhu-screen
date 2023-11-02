@@ -9,6 +9,7 @@
             <div class="dataBox bg">
               <div class="circleArray bg" v-for="item in projectSituation" :key="item.id">
                 <div class="value">{{ item.value }}</div>
+                
                 <div class="name">{{ item.name }}</div>
               </div>
             </div>
@@ -142,7 +143,7 @@ import projectSituation from "./indexs/projectSituation.vue";
 import { getScreenAddData } from "@/http/api/index";
 import vueSeamlessScroll from "vue-seamless-scroll";
 import ChinaMap from "./indexs/ChinaMap.vue";
-import { dealMoneyCountfun } from "./utils";
+import { dealMoneyCountfun, filtersNum } from "./utils";
 export default {
   components: {
     supplierChart,
@@ -221,13 +222,23 @@ export default {
       const res = await getScreenAddData({});
         if(res.status == 200){
           let dealMoneyCountTemp = parseInt(res.data.deal_money_count).toString();
-          dealMoneyCountTemp = "123456789"
           this.dealMoneyCount = dealMoneyCountfun(dealMoneyCountTemp);
 
           let projectSituationTemp = res.data.project_situation;
           for(let key of Object.keys(projectSituationTemp)){
             this.projectSituation.push({key: key, value: projectSituationTemp[key], name: this.transChinaprojects(key)});
           }
+          this.projectSituation.forEach(item => {
+            if(item.key == "user_num" || item.key == "visitor_num"){
+              item.value = item.value == null ? "" : filtersNum(parseFloat(item.value));
+              if(item.key == "user_num"){
+                item.value = item.value + "人"
+              }
+              if(item.key == "visitor_num"){
+                item.value = item.value + "人次"
+              }
+            }
+          })
         }
     },
     getTransStatusData(value){

@@ -51,4 +51,15 @@ export const dealMoneyCountfun = (numStr) => {
     }
 
     return outerArr
-  }
+}
+
+//数字处理
+export const filtersNum = (value) => {
+    let num;
+    if(value > 9999){//大于9999显示x.xx万
+        num=(Math.floor(value/1000)/10) + '万';
+    }else if( value < 9999 && value>=0){
+        num=value
+    }
+    return num;
+}
