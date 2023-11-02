@@ -15,8 +15,7 @@
             <div class="top-center">
               <div class="totalAmountBox bg">
                 <div class="totalAmountBox-items">
-                  <div
-                  class="totalAmountBox-items-item"
+                  <div class="totalAmountBox-items-item"
                     v-for="(item, itemIndex) in dealMoneyCount"
                     :key="itemIndex"
                   >
@@ -25,12 +24,23 @@
                       v-for="(i, index) in item"
                       :key="index"
                     >
+                      <div class="unit">
+                        <div v-show="itemIndex == dealMoneyCount.length - 2 && index == item.length - 1">千</div>
+                        <div v-show="itemIndex == dealMoneyCount.length - 2 && index == item.length - 2">万</div>
+                        <div v-show="itemIndex == dealMoneyCount.length - 2 && index == item.length - 3">十万</div>
+                        <div v-show="itemIndex == dealMoneyCount.length - 3 && index == item.length - 1">百万</div>
+                        <div v-show="itemIndex == dealMoneyCount.length - 3 && index == item.length - 2">千万</div>
+                        <div v-show="itemIndex == dealMoneyCount.length - 3 && index == item.length - 3">亿</div>
+                        <div v-show="itemIndex == dealMoneyCount.length - 4 && index == item.length - 1">十亿</div>
+                      </div>
                       <div class="totalAmountBox-items-item-i-inner"></div>
                       <div class="totalAmountBox-items-item-i-inner"></div>
                       <div class="totalAmountBox-items-item-i-value">
                         {{ i }}
                       </div>
+                      
                     </div>
+                    <div class="symbol" v-if="itemIndex != 0">,</div>
                   </div>
                 </div>
               </div>
@@ -99,7 +109,7 @@
                     class="warp"
                   >
                     <div>
-                      <div v-for="(item, index) in transStatusData" :key="index" class="projectItem">
+                      <div v-for="(item, index) in transStatusData" :key="index" class="transItem">
                         <span class="svg">
                           <svg-icon
                             name="screen-person"
@@ -210,9 +220,7 @@ export default {
       this.projectSituation = [];
       const res = await getScreenAddData({});
         if(res.status == 200){
-
           let dealMoneyCountTemp = parseInt(res.data.deal_money_count).toString();
-          
           this.dealMoneyCount = dealMoneyCountfun(dealMoneyCountTemp);
 
           let projectSituationTemp = res.data.project_situation;
@@ -232,9 +240,9 @@ export default {
   mounted() {
     this.showNowTime();
     this.getScreenAddData();
-    // this.timer2 = setInterval(async () => {
-    //   this.getScreenAddData();
-    // },30000)
+    this.timer2 = setInterval(async () => {
+      this.getScreenAddData();
+    },120000)
   },
   beforeDestroy(){
     clearInterval(this.timer1);

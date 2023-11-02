@@ -87,17 +87,26 @@
               display: flex;
               align-items: center;
               justify-content: center;
-              margin-top: 10px;
+              margin-top: 40px;
               &-item {
                 display: flex;
                 align-items: center;
-                justify-content: space-around;
+                position: relative;
                 &-i{
                   position: relative;
-                  margin-right: 20px;
+                  margin-right: 15px;
+                  margin-left: 15px;
+                  .unit{
+                    position: absolute;
+                    margin-top: -26px;
+                    width: 45px;
+                    text-align: center;
+                    color: #fff;
+                    font-size: 20px;
+                  }
                   &-inner {
                     width: 50px;
-                    height: 50px;
+                    height: 45px;
                     margin-bottom: 5px;
                     background: #08266F;
                     display: flex;
@@ -113,17 +122,14 @@
                     transform: translate(-50%, -50%);
                   }
                 }
+                .symbol{
+                  color: #fff;
+                  position: absolute;
+                  margin-top: 50px;
+                  margin-left: 0px;
+                  font-size: 40px;
+                }
               }
-              // &-item:nth-child(3)::after,
-              // &-item:nth-child(6)::after,
-              // &-item:nth-child(9)::after {
-              //   content: ",";
-              //   position: absolute;
-              //   bottom: -10px;
-              //   left: -20px;
-              //   color: #fff;
-              //   font-size: 50px;
-              // }
             }
           }
           .info {
@@ -279,13 +285,19 @@
                 height: 25px;
                 line-height: 25px;
                 overflow: hidden;
-              .svg {
-                margin-right: 10px;
-              }
-              .tip {
-                font-size: 14px;
-                color: #ffffff;
-              }
+                .transItem{
+                  width: 200px;          
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  color: #fff;
+                  .svg {
+                    margin-right: 10px;
+                  }
+                  .tip {
+                    font-size: 14px;
+                  }
+                }
             }
           }
         }

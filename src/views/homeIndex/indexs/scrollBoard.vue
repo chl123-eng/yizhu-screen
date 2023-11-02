@@ -30,7 +30,7 @@ export default {
     this.getDealData();
     this.timer1 = setInterval(async () => {
       this.getDealData();
-    },60000)
+    },120000)
   },
   beforeDestroy(){
     clearInterval(this.timer1);

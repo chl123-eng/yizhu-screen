@@ -91,7 +91,7 @@ export default {
     this.getProjectSituation();
     this.timer1 = setInterval(async () => {
       this.getProjectSituation();
-    },60000)
+    },120000)
   },
   beforeDestroy(){
     clearInterval(this.timer1);

@@ -15,7 +15,7 @@ export default {
     data() {
         return {
                 config: {
-                centerPoint: [0.60, 0.78],
+                centerPoint: [0.584, 0.775],
                 points: [
                     {
                         position: [0.52, 0.4],
@@ -84,10 +84,17 @@ export default {
                         },
                         data: [{ 
                             name: '广东', 
+                            // value: [113.280637,23.125178],
                             itemStyle: {
                                 areaColor: '#FFC637',
-                            }
+                            },
                         }]
+                    },
+                    {
+                        type: 'custom',
+                        coordinateSystem: 'geo',
+                        clickable:true,
+                        data:[],
                     }
                 ]
             },
@@ -98,8 +105,33 @@ export default {
         initEchartMap() {
             let mapDiv = document.getElementById('china_map');
             let myChart = echarts.init(mapDiv);
+            this.setEchartOption();
             myChart.setOption(this.options);
+            
         },
+        //修改echart配制
+        setEchartOption(){
+                //红色标注点的坐标
+            let markList = [
+                { name: '广东', value: [113.280637,24.125178] },
+            ]
+            this.options.series[1].data = markList
+                if(markList.length>0){
+                    this.options.series[1].renderItem = function(params,api){
+                    return {
+                        type: 'image',
+                        name: 'aaa',
+                        style: {
+                        image: require("@/assets/img/provinceIcon.png"), //标注点图标
+                        width: 14,
+                        height: 18,
+                        x: api.coord([markList[params.dataIndex].value[0], markList[params.dataIndex].value[1]])[0],
+                        y: api.coord([markList[params.dataIndex].value[0], markList[params.dataIndex].value[1]])[1]
+                        }
+                    }
+                }
+            }
+        }
     },
     mounted() {
         this.$nextTick(() => {
