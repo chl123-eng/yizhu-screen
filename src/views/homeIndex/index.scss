@@ -9,13 +9,13 @@
     align-items: flex-end;
     justify-content: center;
     width: 100%;
-    height: 90%;
+    height: 98%;
     background-image: url("@/assets/img/screen-bg.png");
   
     .dateTime {
       position: absolute;
       left: 50%;
-      top: 100px;
+      top: 110px;
       transform: translate(-50%, -50%);
       font-size: 25px;
       font-weight: 600;
@@ -28,12 +28,12 @@
       box-sizing: border-box;
       padding-left: 67px;
       padding-right: 67px;
-      padding-top: 100px;
+      padding-top: 120px;
       position: absolute;
       z-index: 1;
       .top {
         width: 100%;
-        height: 300px;
+        height: 320px;
         display: flex;
         justify-content: space-between;
         margin-bottom: 25px;
@@ -125,7 +125,7 @@
                 .symbol{
                   color: #fff;
                   position: absolute;
-                  margin-top: 50px;
+                  margin-top: 30px;
                   margin-left: 0px;
                   font-size: 40px;
                 }
@@ -213,7 +213,7 @@
       }
       .bottom {
         width: 100%;
-        height: 500px;
+        height: 520px;
         display: flex;
         justify-content: space-between;
         .projectSituation {

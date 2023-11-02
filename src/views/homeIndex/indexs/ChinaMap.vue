@@ -15,7 +15,7 @@ export default {
     data() {
         return {
                 config: {
-                centerPoint: [0.584, 0.775],
+                centerPoint: [0.59, 0.775],
                 points: [
                     {
                         position: [0.52, 0.4],
@@ -113,7 +113,7 @@ export default {
         setEchartOption(){
                 //红色标注点的坐标
             let markList = [
-                { name: '广东', value: [113.280637,24.125178] },
+                { name: '广东', value: [113.280,24.125178] },
             ]
             this.options.series[1].data = markList
                 if(markList.length>0){

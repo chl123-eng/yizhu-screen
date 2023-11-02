@@ -221,6 +221,7 @@ export default {
       const res = await getScreenAddData({});
         if(res.status == 200){
           let dealMoneyCountTemp = parseInt(res.data.deal_money_count).toString();
+          dealMoneyCountTemp = "123456789"
           this.dealMoneyCount = dealMoneyCountfun(dealMoneyCountTemp);
 
           let projectSituationTemp = res.data.project_situation;
