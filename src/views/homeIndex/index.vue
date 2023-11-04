@@ -144,6 +144,8 @@ import { getScreenAddData } from "@/http/api/index";
 import vueSeamlessScroll from "vue-seamless-scroll";
 import ChinaMap from "./indexs/ChinaMap.vue";
 import { dealMoneyCountfun, filtersNum } from "./utils";
+import VConsole from 'vconsole';
+
 export default {
   components: {
     supplierChart,
@@ -246,6 +248,7 @@ export default {
     }
   },
   created() {
+    const vConsole = new VConsole();
     this.showNowTime();
   },
 

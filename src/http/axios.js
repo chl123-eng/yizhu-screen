@@ -5,7 +5,7 @@ import { MessageBox, Message } from "element-ui";
 const errorCodeWhitelists = [];
 
 // 设置基本请求地址
-axios.defaults.baseURL = "";
+axios.defaults.baseURL = "https://new.dcyijian.com";
 
 axios.defaults.headers["Content-Type"] = "application/json";
 // 设置请求超时时间

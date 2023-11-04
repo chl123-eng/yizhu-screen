@@ -18,7 +18,7 @@
                 v-for="(imgItem, index) in item.original_img"
                 :key="index"
               >
-                <img :src="imgItem" />
+              <el-image :src="imgItem" class="image"></el-image>
               </div>
             </div>
           <!-- </vue-seamless-scroll> -->
@@ -123,7 +123,7 @@ export default {
           width: 124px;
           height: 85px;
           margin-right: 9px;
-          img {
+          .image {
             width: 100%;
             height: 100%;
           }

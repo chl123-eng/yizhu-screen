@@ -12,7 +12,7 @@ const glob = require("glob-all");
 const targetPath = 'https://new.dcyijian.com';//正式环境
 
 module.exports = {
-  // publicPath: process.env.NODE_ENV === "production" ? "/site/vue-demo/" : "/", // 公共路径
+  publicPath: "./", // 公共路径
   indexPath: "index.html", // 相对于打包路径index.html的路径
   outputDir: process.env.outputDir || "dist", // 'dist', 生产环境构建文件的目录
   assetsDir: "static", // 相对于outputDir的静态资源(js、css、img、fonts)目录
@@ -83,11 +83,11 @@ module.exports = {
     https: false, // https:{type:Boolean}
     // open: false, //配置自动启动浏览器
     // hotOnly: true, // 热更新
-    proxy: {
-      '/api': {
-        target: targetPath,
-      }
+    // proxy: {
+    //   '/api': {
+    //     target: targetPath,
+    //   }
 
-    },
+    // },
   },
 };

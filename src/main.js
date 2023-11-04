@@ -13,6 +13,7 @@ import "element-ui/lib/theme-chalk/index.css";
 /* http请求 */
 import api from "@/http";
 
+console.log(process.env.NODE_ENV === "production" ? "https://new.dcyijian.com" : "./")
 Vue.use(api);
 Vue.use(ElementUI);
 Vue.use(dataV);
@@ -21,7 +22,6 @@ Vue.use(scroll, { componentName: "scroll-seamless" });
 Vue.component("SvgIcon", SvgIcon);
 
 Vue.config.productionTip = false;
-
 new Vue({
   router,
   store,
