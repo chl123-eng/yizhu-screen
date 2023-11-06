@@ -1,9 +1,9 @@
 <template>
-  <div class="outContainer">
-    <dv-full-screen-container>
+  <div>
+    <!-- <dv-full-screen-container class="outContainer"> -->
       <div class="container bg">
         <div class="dateTime">{{ dateTime }}</div>
-          <ChinaMap />
+        <ChinaMap />
         <div class="content">
           <div class="top">
             <div class="dataBox bg">
@@ -131,7 +131,7 @@
           </div>
         </div>
       </div>
-    </dv-full-screen-container>
+    <!-- </dv-full-screen-container> -->
   </div>
   
 </template>
@@ -165,7 +165,8 @@ export default {
       projectSituation: [], //左上角各类数据
       today: dayjs(new Date()).format("YYYY[年]MM[月]DD[日]"),
       engineerData: [],
-      transStatusData: []
+      transStatusData: [],
+      key: 1
     };
   },
   computed: {
@@ -191,7 +192,14 @@ export default {
         );
       }, 1000);
     },
-
+    pageShow(){
+      var _this = this
+      window.addEventListener('pageshow', function (e) {
+        _this.$nextTick(() => {
+          _this.key++
+        })
+      })
+    },
     //左上角各类数据添加字段中文名
     transChinaprojects(key){
       switch(key){

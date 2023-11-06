@@ -6,6 +6,7 @@ const IS_PROD = ["production", "prod"].includes(process.env.NODE_ENV);
 const resolve = (dir) => path.join(__dirname, dir);
 //全局文件路径
 const glob = require("glob-all");
+const pxtorem = require('postcss-pxtorem')
 
 //环境
 // const targetPath = 'http://dev.dcyijian.com';//测试环境
@@ -66,15 +67,19 @@ module.exports = {
       ]);
     }
   },
+  configureWebpack: config => { config.entry.app = ["babel-polyfill", "./src/main.js"]; },
   css: {
-    extract: IS_PROD,
-    loaderOptions: {
-      // postcss: {
-      //   postcssOptions: {
-      //     plugins: [postcss],
-      //   },
-      // },
-    },
+    // extract: IS_PROD,
+    // loaderOptions: {
+    //   postcss: {
+    //     postcssOptions: {
+    //       plugins: [pxtorem({
+    //         rootValue: 192, 
+    //         propList: ["*"]
+    //       })],
+    //     },
+    //   },
+    // },
   },
   devServer: {
     host: "0.0.0.0",

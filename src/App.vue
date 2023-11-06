@@ -4,10 +4,23 @@
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  body{
-    margin: 0
+<script>
+export default {
+  mounted() {
+    
+
   }
+}
+</script>
+
+<style lang="scss">
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+#app {
+  width: 1920px;
+  height: 1080px;
 }
 </style>

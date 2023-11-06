@@ -1,6 +1,6 @@
 <template>
   <div id="scroll-board">
-    <dv-scroll-board :config="config" />
+    <dv-scroll-board :config="config"/>
   </div>
 </template>
 
@@ -23,7 +23,6 @@ export default {
         evenRowBGC: "",
       },
       timer1: null,
-      
     };
   },
   mounted(){
