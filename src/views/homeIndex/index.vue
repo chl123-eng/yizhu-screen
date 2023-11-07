@@ -1,7 +1,7 @@
 <template>
   <div id="fullScreenContainer" class="container bg" @click="changeFullscreen">
     <div class="dateTime" :class="isFullScreen ? 'isFullTime' : ''">{{ dateTime }}</div>
-    <ChinaMap />
+    <ChinaMap :isFullScreen="isFullScreen"/>
     <div class="content">
       <div class="top" :class="isFullScreen ? 'isFullTop' : ''">
         <div class="dataBox bg">

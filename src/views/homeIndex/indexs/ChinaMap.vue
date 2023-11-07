@@ -1,6 +1,6 @@
 <template>
     <!-- <div> -->
-        <div id="china_map_box">
+        <div id="china_map_box" :class="isFullScreen ? 'isFullMap' : ''">
             <div id="china_map"></div>
             <!-- <dv-flyline-chart :config="config" style="width:100%;height:100%;position: absolute;"></dv-flyline-chart> -->
         </div>
@@ -12,6 +12,12 @@
 import * as echarts from 'echarts';
 import "@/utils/chinaMap.js";
 export default {
+    props: {
+        isFullScreen:{
+            type: Boolean,
+            default: false
+        }
+    },
     data() {
         return {
                 config: {
@@ -157,10 +163,14 @@ export default {
   
 <style scoped>
 #china_map_box {
-    width: 1300px;
-    height: 1000px;
+    width: 100%;
+    height: 100%;
     position: relative;
     
+}
+
+.isFullMap{
+    width: 110% !important;
 }
 
 #china_map_box #china_map {
