@@ -16,7 +16,7 @@ export default {
           axisLabel: {
             style: {
               fill: "#fff",
-              fontSize: 10,
+              fontSize: 8,
             },
           },
         },
@@ -28,7 +28,7 @@ export default {
           axisLabel: {
             style: {
               fill: "#fff",
-              fontSize: 10,
+              fontSize: 8,
             },
           },
           axisLine: {
@@ -57,7 +57,7 @@ export default {
               position: 'top',//在上方显示
               style: { // 数值样式
                 color: "#fff",
-                fontSize: 12
+                fontSize: 10
               },
               formatter: '{value}',
             }

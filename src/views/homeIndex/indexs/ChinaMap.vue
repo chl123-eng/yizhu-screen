@@ -15,7 +15,7 @@ export default {
     data() {
         return {
                 config: {
-                centerPoint: [0.625, 0.76],
+                centerPoint: [0.625, 0.78],
                 points: [
                     {
                         position: [0.52, 0.4],
@@ -144,7 +144,7 @@ export default {
   
 <style scoped>
 #china_map_box {
-    width: 1250px;
+    width: 1300px;
     height: 1000px;
     position: relative;
     

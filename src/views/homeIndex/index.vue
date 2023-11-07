@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <dv-full-screen-container class="outContainer"> -->
       <div class="container bg">
         <div class="dateTime">{{ dateTime }}</div>
         <ChinaMap />
@@ -51,7 +50,7 @@
             <div class="supplierChart bg">
               <div class="supplierChart-top">
                 <div class="svg">
-                  <svg-icon name="screen-arrow" width="20" height="20"></svg-icon>
+                  <svg-icon name="screen-arrow" width="14" height="14"></svg-icon>
                 </div>
 
                 <div class="title">供应商申请入驻量</div>
@@ -75,8 +74,8 @@
                   <span class="svg">
                     <svg-icon
                       name="screen-arrow"
-                      width="20"
-                      height="20"
+                      width="14"
+                      height="14"
                     ></svg-icon>
                   </span>
 
@@ -96,8 +95,8 @@
                   <span class="svg">
                     <svg-icon
                       name="screen-arrow"
-                      width="20"
-                      height="20"
+                      width="14"
+                      height="14"
                     ></svg-icon>
                   </span>
 
@@ -109,19 +108,17 @@
                     :class-option="optionSingleHeightTime"
                     class="warp"
                   >
-                    <div>
-                      <div v-for="(item, index) in transStatusData" :key="index" class="transItem">
-                        <span class="svg">
-                          <svg-icon
-                            name="screen-person"
-                            width="20"
-                            height="20"
-                          ></svg-icon>
-                        </span>
-                        <span class="tip"
-                          >{{ item }}</span
-                        >
-                      </div>
+                    <div v-for="(item, index) in transStatusData" :key="index" class="transItem">
+                      <span class="svg">
+                        <svg-icon
+                          name="screen-person"
+                          width="14"
+                          height="14"
+                        ></svg-icon>
+                      </span>
+                      <span class="tip"
+                        >{{ item }}</span
+                      >
                     </div>
                   </vue-seamless-scroll>
                 </div>
@@ -131,7 +128,6 @@
           </div>
         </div>
       </div>
-    <!-- </dv-full-screen-container> -->
   </div>
   
 </template>
@@ -172,12 +168,12 @@ export default {
   computed: {
     optionSingleHeightTime() {
         return {
-          step: 1.2, // 数值越大速度滚动越快
+          step: 0.5, // 数值越大速度滚动越快
           limitMoveNum: 2, // 开始无缝滚动的数据量 this.dataList.length
           hoverStop: true, // 是否开启鼠标悬停stop
           direction: 1, // 0向下 1向上 2向左 3向右
           openWatch: true, // 开启数据实时监控刷新dom
-          singleHeight: 26, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
+          // singleHeight: 26, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
           singleWidth: 0, // 单步运动停止的宽度(默认值0是无缝不停止的滚动) direction => 2/3
           waitTime: 1200, // 单步运动停止的时间(默认值1000ms)
         };
