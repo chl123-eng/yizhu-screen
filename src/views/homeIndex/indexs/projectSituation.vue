@@ -105,7 +105,7 @@ export default {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 400px;
+  height: 360px;
   padding-left: 27px;
   padding-right: 37px;
   box-sizing: border-box;

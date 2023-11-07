@@ -1,137 +1,134 @@
 <template>
-  <div>
-      <div class="container bg">
-        <div class="dateTime">{{ dateTime }}</div>
-        <ChinaMap />
-        <div class="content">
-          <div class="top">
-            <div class="dataBox bg">
-              <div class="selfBox" v-for="item in projectSituation" :key="item.id">
-                <div class="circleArray bg">
-                  <div class="value">{{ item.value }}</div>
+  <div id="fullScreenContainer" class="container bg" @click="changeFullscreen">
+    <div class="dateTime" :class="isFullScreen ? 'isFullTime' : ''">{{ dateTime }}</div>
+    <ChinaMap />
+    <div class="content">
+      <div class="top" :class="isFullScreen ? 'isFullTop' : ''">
+        <div class="dataBox bg">
+          <div class="selfBox" v-for="item in projectSituation" :key="item.id">
+            <div class="circleArray bg">
+              <div class="value">{{ item.value }}</div>
+              
+            </div>
+            <div class="name">{{ item.name }}</div>
+          </div>
+        </div>
+        <div class="top-center">
+          <div class="totalAmountBox bg">
+            <div class="totalAmountBox-items">
+              <div class="totalAmountBox-items-item"
+                v-for="(item, itemIndex) in dealMoneyCount"
+                :key="itemIndex"
+              >
+                <div
+                class="totalAmountBox-items-item-i"
+                  v-for="(i, index) in item"
+                  :key="index"
+                >
+                  <div class="unit">
+                    <div v-show="itemIndex == dealMoneyCount.length - 2 && index == item.length - 1">千</div>
+                    <div v-show="itemIndex == dealMoneyCount.length - 2 && index == item.length - 2">万</div>
+                    <div v-show="itemIndex == dealMoneyCount.length - 2 && index == item.length - 3">十万</div>
+                    <div v-show="itemIndex == dealMoneyCount.length - 3 && index == item.length - 1">百万</div>
+                    <div v-show="itemIndex == dealMoneyCount.length - 3 && index == item.length - 2">千万</div>
+                    <div v-show="itemIndex == dealMoneyCount.length - 3 && index == item.length - 3">亿</div>
+                    <div v-show="itemIndex == dealMoneyCount.length - 4 && index == item.length - 1">十亿</div>
+                  </div>
+                  <div class="totalAmountBox-items-item-i-inner"></div>
+                  <div class="totalAmountBox-items-item-i-inner"></div>
+                  <div class="totalAmountBox-items-item-i-value">
+                    {{ i }}
+                  </div>
                   
                 </div>
-                <div class="name">{{ item.name }}</div>
-              </div>
-            </div>
-            <div class="top-center">
-              <div class="totalAmountBox bg">
-                <div class="totalAmountBox-items">
-                  <div class="totalAmountBox-items-item"
-                    v-for="(item, itemIndex) in dealMoneyCount"
-                    :key="itemIndex"
-                  >
-                    <div
-                    class="totalAmountBox-items-item-i"
-                      v-for="(i, index) in item"
-                      :key="index"
-                    >
-                      <div class="unit">
-                        <div v-show="itemIndex == dealMoneyCount.length - 2 && index == item.length - 1">千</div>
-                        <div v-show="itemIndex == dealMoneyCount.length - 2 && index == item.length - 2">万</div>
-                        <div v-show="itemIndex == dealMoneyCount.length - 2 && index == item.length - 3">十万</div>
-                        <div v-show="itemIndex == dealMoneyCount.length - 3 && index == item.length - 1">百万</div>
-                        <div v-show="itemIndex == dealMoneyCount.length - 3 && index == item.length - 2">千万</div>
-                        <div v-show="itemIndex == dealMoneyCount.length - 3 && index == item.length - 3">亿</div>
-                        <div v-show="itemIndex == dealMoneyCount.length - 4 && index == item.length - 1">十亿</div>
-                      </div>
-                      <div class="totalAmountBox-items-item-i-inner"></div>
-                      <div class="totalAmountBox-items-item-i-inner"></div>
-                      <div class="totalAmountBox-items-item-i-value">
-                        {{ i }}
-                      </div>
-                      
-                    </div>
-                    <div class="symbol" v-if="itemIndex != 0">,</div>
-                  </div>
-                </div>
-              </div>
-              <div class="info">累计成交金额</div>
-            </div>
-
-            <div class="supplierChart bg">
-              <div class="supplierChart-top">
-                <div class="svg">
-                  <svg-icon name="screen-arrow" width="14" height="14"></svg-icon>
-                </div>
-
-                <div class="title">供应商申请入驻量</div>
-              </div>
-
-              <div class="chartBox">
-                <div class="chartBoxTip">
-                  <div class="chartBoxTop">申请入驻量</div>
-                  <div class="chartBoxBottom">单位/个</div>
-                </div>
-                <div class="chart">
-                  <supplierChart />
-                </div>
+                <div class="symbol" v-if="itemIndex != 0">,</div>
               </div>
             </div>
           </div>
-          <div class="bottom">
-            <div class="projectSituation bg">
-              <div class="projectSituation-top">
-                <div class="projectSituation-top-left">
-                  <span class="svg">
-                    <svg-icon
-                      name="screen-arrow"
-                      width="14"
-                      height="14"
-                    ></svg-icon>
-                  </span>
+          <div class="info">累计成交金额</div>
+        </div>
 
-                  <span class="title">项目情况</span>
-                </div>
-                <div class="projectSituation-top-right">
-                  <span class="tip">{{ today }}</span>
-                </div>
-              </div>
-              <div class="projectSituation-bottom">
-                <projectSituation></projectSituation>
-              </div>
+        <div class="supplierChart bg">
+          <div class="supplierChart-top">
+            <div class="svg">
+              <svg-icon name="screen-arrow" width="14" height="14"></svg-icon>
             </div>
-            <div class="latestTransStatus bg">
-              <div class="latestTransStatus-top">
-                <div class="latestTransStatus-top-left">
-                  <span class="svg">
-                    <svg-icon
-                      name="screen-arrow"
-                      width="14"
-                      height="14"
-                    ></svg-icon>
-                  </span>
 
-                  <span class="title">最新交易情况</span>
-                </div>
-                <div class="latestTransStatus-top-right">
-                  <vue-seamless-scroll
-                    :data="transStatusData"
-                    :class-option="optionSingleHeightTime"
-                    class="warp"
-                  >
-                    <div v-for="(item, index) in transStatusData" :key="index" class="transItem">
-                      <span class="svg">
-                        <svg-icon
-                          name="screen-person"
-                          width="14"
-                          height="14"
-                        ></svg-icon>
-                      </span>
-                      <span class="tip"
-                        >{{ item }}</span
-                      >
-                    </div>
-                  </vue-seamless-scroll>
-                </div>
-              </div>
-              <scrollBoard @transStatusData="getTransStatusData" ></scrollBoard>
+            <div class="title">供应商申请入驻量</div>
+          </div>
+
+          <div class="chartBox">
+            <div class="chartBoxTip">
+              <div class="chartBoxTop">申请入驻量</div>
+              <div class="chartBoxBottom">单位/个</div>
+            </div>
+            <div class="chart">
+              <supplierChart />
             </div>
           </div>
         </div>
       </div>
+      <div class="bottom">
+        <div class="projectSituation bg">
+          <div class="projectSituation-top">
+            <div class="projectSituation-top-left">
+              <span class="svg">
+                <svg-icon
+                  name="screen-arrow"
+                  width="14"
+                  height="14"
+                ></svg-icon>
+              </span>
+
+              <span class="title">项目情况</span>
+            </div>
+            <div class="projectSituation-top-right">
+              <span class="tip">{{ today }}</span>
+            </div>
+          </div>
+          <div class="projectSituation-bottom">
+            <projectSituation></projectSituation>
+          </div>
+        </div>
+        <div class="latestTransStatus bg">
+          <div class="latestTransStatus-top">
+            <div class="latestTransStatus-top-left">
+              <span class="svg">
+                <svg-icon
+                  name="screen-arrow"
+                  width="14"
+                  height="14"
+                ></svg-icon>
+              </span>
+
+              <span class="title">最新交易情况</span>
+            </div>
+            <div class="latestTransStatus-top-right">
+              <vue-seamless-scroll
+                :data="transStatusData"
+                :class-option="optionSingleHeightTime"
+                class="warp"
+              >
+                <div v-for="(item, index) in transStatusData" :key="index" class="transItem">
+                  <span class="svg">
+                    <svg-icon
+                      name="screen-person"
+                      width="14"
+                      height="14"
+                    ></svg-icon>
+                  </span>
+                  <span class="tip"
+                    >{{ item }}</span
+                  >
+                </div>
+              </vue-seamless-scroll>
+            </div>
+          </div>
+          <scrollBoard @transStatusData="getTransStatusData" ></scrollBoard>
+        </div>
+      </div>
+    </div>
   </div>
-  
 </template>
 <script>
 import dayjs from "dayjs";
@@ -142,7 +139,6 @@ import { getScreenAddData } from "@/http/api/index";
 import vueSeamlessScroll from "vue-seamless-scroll";
 import ChinaMap from "./indexs/ChinaMap.vue";
 import { dealMoneyCountfun, filtersNum } from "./utils";
-import VConsole from 'vconsole';
 
 export default {
   components: {
@@ -164,7 +160,7 @@ export default {
       today: dayjs(new Date()).format("YYYY[年]MM[月]DD[日]"),
       engineerData: [],
       transStatusData: [],
-      key: 1
+      isFullScreen: false
     };
   },
   computed: {
@@ -236,25 +232,43 @@ export default {
           for(let key of Object.keys(projectSituationTemp)){
             this.projectSituation.push({key: key, value: projectSituationTemp[key], name: this.transChinaprojects(key)});
           }
-          // this.projectSituation.forEach(item => {
-          //   if(item.key == "user_num" || item.key == "visitor_num"){
-          //     item.value = item.value == null ? "" : filtersNum(parseFloat(item.value));
-          //     if(item.key == "user_num"){
-          //       item.value = item.value + "人"
-          //     }
-          //     if(item.key == "visitor_num"){
-          //       item.value = item.value + "人次"
-          //     }
-          //   }
-          // })
         }
     },
     getTransStatusData(value){
       this.transStatusData = value;
+    },
+     // 将指定元素全屏
+    launchFullscreen(element) {
+        if(element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if(element.mozRequestFullScreen) {
+            element.mozRequestFullScreen();
+        } else if(element.msRequestFullscreen){
+            element.msRequestFullscreen();
+        } else if(element.webkitRequestFullscreen) {
+            element.webkitRequestFullScreen();
+        }
+    },
+
+    // 退出全屏
+    exitFullscreen() {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        }
+    },
+    changeFullscreen(){
+      this.isFullScreen = !this.isFullScreen;
+      this.isFullScreen ? this.launchFullscreen(document.getElementById("fullScreenContainer")) : this.exitFullscreen();
     }
+        
   },
   created() {
-    const vConsole = new VConsole();
     this.showNowTime();
   },
 
@@ -263,7 +277,8 @@ export default {
     this.getScreenAddData();
     this.timer2 = setInterval(async () => {
       this.getScreenAddData();
-    },120000)
+    },120000);
+
   },
   beforeDestroy(){
     clearInterval(this.timer1);

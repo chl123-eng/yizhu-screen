@@ -15,12 +15,15 @@
     .dateTime {
       position: absolute;
       left: 50%;
-      top: 104px;
+      top: 100px;
       transform: translate(-50%, -50%);
       font-size: 22px;
       font-weight: 600;
       color: #fff;
       line-height: 29px;
+    }
+    .isFullTime{
+      top: 110px !important;
     }
     .content {
       width: 100%;
@@ -31,6 +34,9 @@
       padding-top: 120px;
       position: absolute;
       z-index: 1;
+      .isFullTop{
+        margin-bottom: 100px !important;
+      }
       .top {
         width: 100%;
         height: 320px;
@@ -223,7 +229,7 @@
       }
       .bottom {
         width: 100%;
-        height: 500px;
+        height: 470px;
         display: flex;
         justify-content: space-between;
         .projectSituation {
@@ -260,6 +266,9 @@
                 color: #ffffff;
               }
             }
+          }
+          &_bottom{
+            height: 100%;
           }
         }
         .latestTransStatus {
