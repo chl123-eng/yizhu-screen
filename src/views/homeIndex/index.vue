@@ -6,9 +6,11 @@
         <div class="content">
           <div class="top">
             <div class="dataBox bg">
-              <div class="circleArray bg" v-for="item in projectSituation" :key="item.id">
-                <div class="value">{{ item.value }}</div>
-                
+              <div class="selfBox" v-for="item in projectSituation" :key="item.id">
+                <div class="circleArray bg">
+                  <div class="value">{{ item.value }}</div>
+                  
+                </div>
                 <div class="name">{{ item.name }}</div>
               </div>
             </div>
@@ -44,7 +46,7 @@
                   </div>
                 </div>
               </div>
-              <div class="info">累计成交金额(元)</div>
+              <div class="info">累计成交金额</div>
             </div>
 
             <div class="supplierChart bg">
@@ -234,17 +236,17 @@ export default {
           for(let key of Object.keys(projectSituationTemp)){
             this.projectSituation.push({key: key, value: projectSituationTemp[key], name: this.transChinaprojects(key)});
           }
-          this.projectSituation.forEach(item => {
-            if(item.key == "user_num" || item.key == "visitor_num"){
-              item.value = item.value == null ? "" : filtersNum(parseFloat(item.value));
-              if(item.key == "user_num"){
-                item.value = item.value + "人"
-              }
-              if(item.key == "visitor_num"){
-                item.value = item.value + "人次"
-              }
-            }
-          })
+          // this.projectSituation.forEach(item => {
+          //   if(item.key == "user_num" || item.key == "visitor_num"){
+          //     item.value = item.value == null ? "" : filtersNum(parseFloat(item.value));
+          //     if(item.key == "user_num"){
+          //       item.value = item.value + "人"
+          //     }
+          //     if(item.key == "visitor_num"){
+          //       item.value = item.value + "人次"
+          //     }
+          //   }
+          // })
         }
     },
     getTransStatusData(value){

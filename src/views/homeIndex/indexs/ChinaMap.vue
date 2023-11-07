@@ -2,7 +2,7 @@
     <!-- <div> -->
         <div id="china_map_box">
             <div id="china_map"></div>
-            <dv-flyline-chart :config="config" style="width:100%;height:100%;position: absolute;"></dv-flyline-chart>
+            <!-- <dv-flyline-chart :config="config" style="width:100%;height:100%;position: absolute;"></dv-flyline-chart> -->
         </div>
      
     <!-- </div> -->
@@ -15,7 +15,7 @@ export default {
     data() {
         return {
                 config: {
-                centerPoint: [0.625, 0.78],
+                centerPoint: [0.625, 0.775],
                 points: [
                     {
                         position: [0.52, 0.4],
@@ -83,10 +83,21 @@ export default {
                             borderWidth: 1
                         },
                         data: [{ 
-                            name: '广东', 
-                            // value: [113.280637,23.125178],
+                            name: '广东',
                             itemStyle: {
-                                areaColor: '#FFC637',
+                                areaColor: '#FFE500',
+                            },
+                        },
+                        { 
+                            name: '海南',
+                            itemStyle: {
+                                areaColor: '#FFE500',
+                            },
+                        },
+                        { 
+                            name: '湖南',
+                            itemStyle: {
+                                areaColor: '#FFE500',
                             },
                         }]
                     },
@@ -114,6 +125,8 @@ export default {
                 //红色标注点的坐标
             let markList = [
                 { name: '广东', value: [113.280,24.125178] },
+                { name: '海南', value: [109.83119,19.531971] },
+                { name: '湖南', value: [111.782279,28.09409] },
             ]
             this.options.series[1].data = markList
                 if(markList.length>0){

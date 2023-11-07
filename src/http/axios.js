@@ -22,9 +22,6 @@ axios.interceptors.request.use(
       config.headers.access_token = `${sessionStorage.getItem("accessToken")}`;
       config.headers.token = `${sessionStorage.getItem("accessToken")}`;
     }
-    // if (sessionStorage.getItem("jwtToken")) {
-    //   config.headers.jwt_token = `${sessionStorage.getItem("jwtToken")}`;
-    // }
     return config;
   },
   (err) => {
