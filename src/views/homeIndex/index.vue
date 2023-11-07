@@ -68,7 +68,7 @@
           </div>
         </div>
       </div>
-      <div class="bottom">
+      <div class="bottom" :class="isFullScreen ? 'fullContentBottom' : ''">
         <div class="projectSituation bg">
           <div class="projectSituation-top">
             <div class="projectSituation-top-left">
@@ -239,6 +239,7 @@ export default {
     },
      // 将指定元素全屏
     launchFullscreen(element) {
+      console.log(123);
         if(element.requestFullscreen) {
             element.requestFullscreen();
         } else if(element.mozRequestFullScreen) {
@@ -273,6 +274,11 @@ export default {
   },
 
   mounted() {
+    // setTimeout(() => {
+    //   this.launchFullscreen(document.getElementById("fullScreenContainer"));
+    // },3000);
+    
+    // this.isFullScreen ? this.launchFullscreen(document.getElementById("fullScreenContainer")) : this.exitFullscreen();
     this.showNowTime();
     this.getScreenAddData();
     this.timer2 = setInterval(async () => {

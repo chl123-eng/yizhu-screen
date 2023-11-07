@@ -15,7 +15,7 @@
     .dateTime {
       position: absolute;
       left: 50%;
-      top: 100px;
+      top: 95px;
       transform: translate(-50%, -50%);
       font-size: 22px;
       font-weight: 600;
@@ -31,7 +31,7 @@
       box-sizing: border-box;
       padding-left: 67px;
       padding-right: 67px;
-      padding-top: 120px;
+      padding-top: 100px;
       position: absolute;
       z-index: 1;
       .isFullTop{
@@ -227,9 +227,12 @@
           }
         }
       }
+      .fullContentBottom{
+        height: 470px !important;
+      }
       .bottom {
         width: 100%;
-        height: 470px;
+        height: 390px;
         display: flex;
         justify-content: space-between;
         .projectSituation {

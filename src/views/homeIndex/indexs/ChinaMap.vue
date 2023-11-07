@@ -1,7 +1,7 @@
 <template>
     <!-- <div> -->
         <div id="china_map_box" :class="isFullScreen ? 'isFullMap' : ''">
-            <div id="china_map"></div>
+            <div id="china_map" :key="key"></div>
             <!-- <dv-flyline-chart :config="config" style="width:100%;height:100%;position: absolute;"></dv-flyline-chart> -->
         </div>
      
@@ -115,6 +115,7 @@ export default {
                     }
                 ]
             },
+            key: 1,
         };
     },
     methods: {
@@ -152,6 +153,11 @@ export default {
             }
         }
     },
+    watch:{
+        isFullScreen(){
+            this.key = this.key++;
+        }
+    },
     mounted() {
         this.$nextTick(() => {
             this.initEchartMap();
@@ -163,20 +169,22 @@ export default {
   
 <style scoped>
 #china_map_box {
+    padding-top: 200px;
     width: 100%;
-    height: 100%;
+    height: 900px;
     position: relative;
     
 }
 
 .isFullMap{
-    width: 110% !important;
+    padding-top: 100px;
+    height: 1000px !important;
 }
 
 #china_map_box #china_map {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 900px;
     /* z-index: 0; */
 }
 
